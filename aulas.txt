@@ -1,0 +1,56 @@
+{
+    0: {
+        '13:40': 'Compreensão Textual II',
+        '14:30': 'Física I',
+        '15:20': 'Gramática',
+        '16:00': 'Intervalo',
+        '16:40': 'Física II',
+        '17:30': 'Compreensão Textual I',
+        '18:20': 'Física III',
+        '19:00': 'Fim'
+    },
+
+    1: {
+        '13:40': 'Química I',
+        '14:30': 'Matemática I',
+        '15:20': 'Matemática II',
+        '16:00': 'Intervalo',
+        '16:40': 'Geografia II',
+        '17:30': 'Física IV',
+        '18:20': 'Química IV',
+        '19:00': 'Fim'
+    },
+
+    2: {
+        '13:40': 'Filosofia/Sociologia',
+        '14:30': 'Química II',
+        '15:20': 'História I',
+        '16:00': 'Intervalo',
+        '16:40': 'História I',
+        '17:30': 'Biologia IV',
+        '18:20': 'Química III',
+        '19:00': 'Fim'
+    },
+
+    3: {
+        '13:40': 'Geografia I',
+        '14:30': 'Matemática III',
+        '15:20': 'Redação',
+        '16:00': 'Intervalo',
+        '16:40': 'Matemática IV',
+        '17:30': 'Biologia III',
+        '18:20': 'Matemática V',
+        '19:00': 'Fim'
+    },
+
+    4: {
+        '13:40': 'Língua Estrangeira',
+        '14:30': 'Literatura',
+        '15:20': 'História II',
+        '16:00': 'Intervalo',
+        '16:40': 'Biologia I',
+        '17:30': 'Biologia II',
+        '18:20': 'Matemática Básica',
+        '19:00': 'Fim'
+    },
+}
