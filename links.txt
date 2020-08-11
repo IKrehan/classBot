@@ -16,7 +16,7 @@
     'Matemática V': 'https://meet.google.com/lookup/hehjht37ga?authuser=1&hs=179',
     'Matemática IV': 'https://meet.google.com/lookup/bs2nodzdvi?authuser=1&hs=179',
     'Matemática III': 'https://meet.google.com/lookup/dc3u2wphcd?authuser=1&hs=179',
-    'Matemática II': 'https://classroom.google.com/u/1/c/ODMyNjQxNDU5Mjha',
+    'Matemática II': 'https://meet.google.com/lookup/apo2uv45aa?authuser=0&hs=179',
     'Matemática I': 'https://meet.google.com/lookup/alfsk73vxa?authuser=1&hs=179',
 
     'Literatura': 'https://meet.google.com/lookup/er6mlv5yw2?authuser=1&hs=179',

@@ -1,8 +1,8 @@
 from selenium import webdriver
-from datetime import datetime
 from selenium.webdriver.common.keys import Keys
-import time
-import getpass
+
+from time import sleep, strftime, localtime
+
 from os import system
 import ast
 
@@ -16,13 +16,13 @@ links = ast.literal_eval(links_file.read())
 links_file.close()
 
 days = {
-    0: "Segunda-Feira",
-    1: "Terça-Feira",
-    2: "Quarta-Feira",
-    3: "Quinta-Feira",
-    4: "Sexta-Feira",
-    5: "Sábado",
-    6: "Domingo",
+    0: "Domingo",
+    1: "Segunda-Feira",
+    2: "Terça-Feira",
+    3: "Quarta-Feira",
+    4: "Quinta-Feira",
+    5: "Sexta-Feira",
+    6: "Sábado",
 }
 
 
@@ -47,29 +47,25 @@ def loginUser(email, password, driver):
         driver.get('https://accounts.google.com/')
 
         driver.find_element_by_name('identifier').send_keys(email, Keys.RETURN)
-        time.sleep(2)
+        sleep(2)
 
         driver.find_element_by_name('password').send_keys(password, Keys.RETURN)
-        time.sleep(5)
+        sleep(5)
     
     except:
         loginUser(email, password, driver)
 
 
 def enterClass(currentClass, driver):
-    try:
-        # Entra na sala
-        driver.get('https://meet.google.com/lookup/feeooc7ltq?authuser=1&hs=179')
+    # Entra na sala
+    driver.get(links[currentClass])
 
-        time.sleep(5)
-        if driver.find_element_by_xpath('/html/body/div/div[3]/div/div[2]/div[3]/div'):
-            driver.find_element_by_xpath('/html/body/div/div[3]/div/div[2]/div[3]/div').click()
+    sleep(5)
 
-        enter_button = driver.find_element_by_xpath('//*[@id="yDmH0d"]/c-wiz/div/div/div[4]/div[3]/div/div[2]/div/div/div[2]/div/div[2]/div/div[1]/div[1]')
-        enter_button.click()
+    enter_button = driver.find_element_by_xpath('/html/body/div[1]/c-wiz/div/div/div[4]/div[3]/div/div[2]/div/div/div[2]/div/div[2]/div/div[1]/div[1]')
+    enter_button.click()
+    sleep(60)
 
-    except:
-        enterClass(currentClass, driver)
 
 
 def quitClass(driver):
@@ -84,22 +80,30 @@ password = str(input('Senha: '))
 print('\n')
 
 system('cls')
-
 print(header)
 print('\n')
 
-driver = webdriver.Firefox()
+options = webdriver.ChromeOptions()
+options.add_experimental_option('excludeSwitches', ['enable-logging'])
+options.add_argument("--use-fake-ui-for-media-stream")
+
+driver = webdriver.Chrome(options=options)
 
 loginUser(email, password, driver)
 
 animation = "|/-\\"
 idx = 0
 while True:
+    date = localtime()
+    weekday = int(strftime("%w", date))
+    now = strftime("%H:%M", date)
 
-    weekday = datetime.now().weekday()
-    now = f'{datetime.now().hour}:{datetime.now().minute}'
+    print(f"{days[weekday]} {now}  ", animation[idx % len(animation)],'RODANDO...' , end="\r")
+    idx += 1
+    sleep(0.1)
 
-    if weekday < 4:
+
+    if weekday > 0 and weekday <= 5:
         dayClasses = classes[weekday]
 
         if now in dayClasses:
@@ -110,8 +114,3 @@ while True:
                 break
 
             enterClass(dayClasses[now], driver)
-            
-
-    print(f"{days[weekday]} {now}  ", animation[idx % len(animation)],'RODANDO...' , end="\r")
-    idx += 1
-    time.sleep(0.1)
