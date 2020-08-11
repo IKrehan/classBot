@@ -41,17 +41,35 @@ header = '''
 ===================================================================================================
 '''
 
+def loginUser(email, password, driver):
+    try:
+        # Loga no google
+        driver.get('https://accounts.google.com/')
+
+        driver.find_element_by_name('identifier').send_keys(email, Keys.RETURN)
+        time.sleep(2)
+
+        driver.find_element_by_name('password').send_keys(password, Keys.RETURN)
+        time.sleep(5)
+    
+    except:
+        loginUser(email, password, driver)
+
 
 def enterClass(currentClass, driver):
-    # Entra na sala
-    driver.get('https://meet.google.com/lookup/feeooc7ltq?authuser=1&hs=179')
+    try:
+        # Entra na sala
+        driver.get('https://meet.google.com/lookup/feeooc7ltq?authuser=1&hs=179')
 
-    time.sleep(5)
-    if driver.find_element_by_xpath('/html/body/div/div[3]/div/div[2]/div[3]/div'):
-        driver.find_element_by_xpath('/html/body/div/div[3]/div/div[2]/div[3]/div').click()
+        time.sleep(5)
+        if driver.find_element_by_xpath('/html/body/div/div[3]/div/div[2]/div[3]/div'):
+            driver.find_element_by_xpath('/html/body/div/div[3]/div/div[2]/div[3]/div').click()
 
-    enter_button = driver.find_element_by_xpath('//*[@id="yDmH0d"]/c-wiz/div/div/div[4]/div[3]/div/div[2]/div/div/div[2]/div/div[2]/div/div[1]/div[1]')
-    enter_button.click()
+        enter_button = driver.find_element_by_xpath('//*[@id="yDmH0d"]/c-wiz/div/div/div[4]/div[3]/div/div[2]/div/div/div[2]/div/div[2]/div/div[1]/div[1]')
+        enter_button.click()
+
+    except:
+        enterClass(currentClass, driver)
 
 
 def quitClass(driver):
@@ -72,14 +90,7 @@ print('\n')
 
 driver = webdriver.Firefox()
 
-# Loga no google
-driver.get('https://accounts.google.com/')
-
-driver.find_element_by_name('identifier').send_keys(email, Keys.RETURN)
-time.sleep(2)
-
-driver.find_element_by_name('password').send_keys(password, Keys.RETURN)
-time.sleep(5)
+loginUser(email, password, driver)
 
 animation = "|/-\\"
 idx = 0
@@ -98,13 +109,8 @@ while True:
             if now == '19:00':
                 break
 
-
-            try:
-                enterClass(dayClasses[now], driver)
+            enterClass(dayClasses[now], driver)
             
-            except:
-                time.sleep(5)
-                enterClass(dayClasses[now], driver)
 
     print(f"{days[weekday]} {now}  ", animation[idx % len(animation)],'RODANDO...' , end="\r")
     idx += 1
