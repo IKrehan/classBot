@@ -1,6 +1,6 @@
 from tkinter import Tk, Label, StringVar, Entry, Button
 from functools import partial
-from main import bot
+from main_ui import bot
 
 def run(email, password):
     window.destroy()
