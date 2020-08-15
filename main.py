@@ -56,14 +56,18 @@ def loginUser(email, password, driver):
 
 
 def enterClass(currentClass, driver):
-    # Entra na sala
-    driver.get(links[currentClass])
+    try:
+        # Entra na sala
+        driver.get(links[currentClass])
 
-    sleep(5)
+        sleep(5)
 
-    enter_button = driver.find_element_by_xpath('/html/body/div[1]/c-wiz/div/div/div[4]/div[3]/div/div[2]/div/div/div[2]/div/div[2]/div/div[1]/div[1]')
-    enter_button.click()
-    sleep(60)
+        enter_button = driver.find_element_by_xpath('/html/body/div[1]/c-wiz/div/div/div[4]/div[3]/div/div[2]/div/div/div[2]/div/div[2]/div/div[1]/div[1]')
+        enter_button.click()
+        sleep(60)
+    
+    except:
+        enterClass(currentClass, driver)
 
 
 
@@ -107,10 +111,12 @@ while True:
         dayClasses = classes[weekday]
 
         if now in dayClasses:
-            if now == '16:00' or now == '15:59':
+            if now == '16:00':
                 quitClass(driver)
 
-            if now == '19:00':
+            elif now == '19:00':
+                driver.close()
                 break
 
-            enterClass(dayClasses[now], driver)
+            else:
+                enterClass(dayClasses[now], driver)
