@@ -111,12 +111,4 @@ while True:
         dayClasses = classes[weekday]
 
         if now in dayClasses:
-            if now == '16:00':
-                quitClass(driver)
-
-            elif now == '19:00':
-                driver.close()
-                break
-
-            else:
-                enterClass(dayClasses[now], driver)
+            enterClass(dayClasses[now], driver)
