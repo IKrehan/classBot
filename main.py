@@ -110,7 +110,7 @@ while True:
     dayClasses = classes[weekday]
 
     if now in dayClasses:
-        if dayClasses[now] == 'Intervalo' ordayClasses[now] == 'Fim':
+        if dayClasses[now] == 'Intervalo' or dayClasses[now] == 'Fim':
             quitClass(driver)
         else:
-        enterClass(dayClasses[now], driver)
+            enterClass(dayClasses[now], driver)
