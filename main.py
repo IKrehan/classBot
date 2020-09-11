@@ -107,8 +107,10 @@ while True:
     sleep(0.1)
 
 
-    if weekday > 0 and weekday <= 5:
-        dayClasses = classes[weekday]
+    dayClasses = classes[weekday]
 
-        if now in dayClasses:
-            enterClass(dayClasses[now], driver)
+    if now in dayClasses:
+        if dayClasses[now] == 'Intervalo' ordayClasses[now] == 'Fim':
+            quitClass(driver)
+        else:
+        enterClass(dayClasses[now], driver)
